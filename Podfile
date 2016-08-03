@@ -17,9 +17,15 @@ target 'ShareCode' do
     # Pods for testing
   end
 
+# AutoLayout
+pod 'Masonry'
+
+pod 'ReactiveCocoa', '2.0'
+
 pod 'AFNetworking'
 
 pod 'MOBFoundation_IDFA'
+
 pod 'SMSSDK'
 
 

@@ -9,6 +9,19 @@
 #import "AFNetworkTool.h"
 #import <AFNetworking.h>
 
+#ifdef DEBUG //DEBUG  是程序默认存在的一个宏定义 我们平时运行都是在这种方式下
+
+//平时我们开发时候 都会用一个单独的测试环境
+static NSString *baseUrl = @"https://10.30.152.134/PhalApi/Public/CodeShare";
+//服务器接口列表地址
+// http://10.30.152.134/PhalApi/Public/CodeShare/ListAllApis.php
+
+#else
+
+static NSString *baseUrl = @"https://www.1000phone.tk";
+
+#endif
+
 @implementation AFNetworkTool
 
 //为了防止应用频繁获取网络数据的时候 创建的sessionManager过多 会大量消耗手机资源 我们最好封装为一个单例,获取网络数据只用到一个对象
@@ -17,7 +30,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         //用BaseUrl生成sessionManager 就相当于告诉AFNetworking 以后我们请求数据 就是从这个服务器 那么就会把这个服务器的地址缓存起来
-        manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://www.1000phone.tk"]];
+        manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:baseUrl]];
         //设置请求的超时时间 设置请求的参数的编码方式
         //请求的序列号
         manager.requestSerializer.timeoutInterval = 30.0;

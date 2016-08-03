@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "SDLPublicViewController.h"
+#import <SMS_SDK/SMSSDK.h>
 @interface AppDelegate ()
 
 @end
@@ -17,7 +18,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //g当我们吧 main关联 去掉 打开APP会只展示一个黑色的window
+    //一般情况下  为了防止appdelegate方法里面添加的东西过多 显得程序混乱 我们都会将不同的模块封装起来
+    [self createRootViewController];
+    [self createSMSSDK];
     return YES;
+}
+#pragma mark -配置短信验证
+- (void)createSMSSDK{
+    [SMSSDK registerApp:@"158f5193e0d79" withSecret:@"2673c9cb90b6a4e42afadef257c283db"];
+}
+
+- (void)createRootViewController{
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [[SDLPublicViewController alloc]init];
+    [self.window makeKeyAndVisible];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

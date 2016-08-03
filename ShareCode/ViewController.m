@@ -11,6 +11,8 @@
 
 
 
+
+
 @interface ViewController ()
 
 @end
@@ -19,11 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //AFNetworkTool *tool = [[AFNetworkTool alloc]init];
+
     NSDictionary *dict = @{@"service":@"UserInfo.GetInfo", @"uid":@"1"};
-//    [tool getDataWithPath:@"https://www.1000phone.tk" andParameters:dict completeBlock:^(id result) {
-//        NSLog(@"%@",result);
-//    }];
+
     [AFNetworkTool getDataWithPath:@"https://www.1000phone.tk" andParameters:dict completeBlock:^(BOOL success, id result) {
         if(success){
             NSLog(@"用户信息--%@",result);
