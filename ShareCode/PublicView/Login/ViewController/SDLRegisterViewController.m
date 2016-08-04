@@ -8,6 +8,9 @@
 
 #import "SDLRegisterViewController.h"
 #import "UIControl+ActionBlocks.h"
+#import "NSTimer+Blocks.h"
+#import "NSTimer+Addition.h"
+
 #import <Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SMS_SDK/SMSSDK.h>
@@ -15,6 +18,11 @@
 #import "TAlertView.h"
 
 @interface SDLRegisterViewController ()
+
+//写成属性 可以方便的监控变化
+@property(nonatomic,strong)NSNumber *waitTime;
+
+@property(nonatomic,strong)NSTimer *timer;
 
 @end
 
@@ -142,15 +150,54 @@
     CAPTCHAText.rightView = rightView;
     CAPTCHAText.rightViewMode = UITextFieldViewModeAlways;
     
+    //需要短信验证等待时间
+    //1.为了节省成本 一般开发中用地三方短信提供商做发送验证码功能 一条6-8分钱
+    //2.为了用户体验
+    //需求 :点击发送验证码 按钮变为不可用 如果发送成功 按钮不可用 按钮上面显示时间倒计时 如果失败，将按钮设置为可用，提示发送失败 当倒计时结束的时候 将按钮设置为可用（还要验证手机号是否符合规则）
+    //我们可以设置一个初值为60的变量 发送验证码的按钮在0-60的时候 按钮不可用 监听这个数字的变化 
     [rightButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        //直接进入读秒
+        self.waitTime = @60;
+        
+        
         //发送验证码
         [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:phoneField.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
             if(error){
-                NSLog(@"error%@",error);
+                //NSLog(@"error%@",error);
+                //如果失败 等待时间变为-1
+                self.waitTime = @-1;
             }else{
                 NSLog(@"获取验证码成功");
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 block:^{
+                    
+                    self.waitTime = [NSNumber numberWithInteger:self.waitTime.integerValue - 1];
+                    
+                } repeats:YES];
             }
         }];
+    }];
+    //用ARC监控数据的变化 显示画面
+    [RACObserve(self, waitTime) subscribeNext:^(NSNumber *waitTime) {
+        if(waitTime.integerValue <= 0){
+            [self.timer invalidate];
+            self.timer = nil;
+            [rightButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        }else{
+            [rightButton setTitle:[NSString stringWithFormat:@"等待%@秒",waitTime] forState:UIControlStateNormal];
+        }
+    }];
+    
+    
+    
+    //给等待时间赋初值为-1
+    self.waitTime = @-1;
+    //获取验证码按钮默认是不可点击
+    rightButton.enabled = NO;
+    //可以直接将某个信号处理的返回结果设置为某个对象的属性值
+    // RAC(rightButton,enabled) = [RACSignal combineLatest:<#(id<NSFastEnumeration>)#> reduce:<#^id(void)reduceBlock#>]
+    //combineLatest 一堆信号的集合
+    RAC(rightButton,enabled) = [RACSignal combineLatest:@[phoneField.rac_textSignal,RACObserve(self, waitTime)] reduce:^(NSString *phone,NSNumber *waitTime){
+        return @(phone.length >= 11 && waitTime.integerValue<=0);
     }];
     
     
@@ -204,15 +251,12 @@
             }
         }
     }];
-    //获取验证码按钮默认是不可点击
-    rightButton.enabled = NO;
-    //可以直接将某个信号处理的返回结果设置为某个对象的属性值
-   // RAC(rightButton,enabled) = [RACSignal combineLatest:<#(id<NSFastEnumeration>)#> reduce:<#^id(void)reduceBlock#>]
-    //combineLatest 一堆信号的集合
-    RAC(rightButton,enabled) = [RACSignal combineLatest:@[phoneField.rac_textSignal] reduce:^(NSString *phone){
-        return @(phone.length >= 11);
-    }];
     
+    
+    
+    
+    
+
     //RAC可以讲信号和处理写到一起 做项目的时候就不用来回找了
     loginButton.enabled = NO;
     RAC(loginButton,enabled) = [RACSignal combineLatest:@[phoneField.rac_textSignal,passwordField.rac_textSignal,CAPTCHAText.rac_textSignal] reduce:^(NSString *phone,NSString *password, NSString *CAPTCHA ){
@@ -220,6 +264,9 @@
     }];
     
 }
+#pragma mark -计时器
+
+
 - (void)createAlert:(NSString *)str{
     NSArray *arr = @[@"确定"];
     TAlertView *alert = [[TAlertView alloc]initWithTitle:@"温馨提示" message:str buttons:arr andCallBack:^(TAlertView *alertView, NSInteger buttonIndex) {
