@@ -28,5 +28,6 @@ pod 'MOBFoundation_IDFA'
 
 pod 'SMSSDK'
 
+pod 'YYModel'
 
 end

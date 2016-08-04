@@ -30,6 +30,9 @@
     //要在生命周期方法中调用父类的方法
     [super viewDidAppear:animated];
     //当用户没有登录的时候 需要弹出登录界面
+    
+    
+    
     if([SDLUserModel isLogin]){
         
     }else{

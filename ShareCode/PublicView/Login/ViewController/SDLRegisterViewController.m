@@ -10,6 +10,8 @@
 #import "UIControl+ActionBlocks.h"
 #import "NSTimer+Blocks.h"
 #import "NSTimer+Addition.h"
+#import "NSString+MD5.h"
+#import "UIAlertView+Block.h"
 
 #import <Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -163,10 +165,9 @@
         //发送验证码
         [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:phoneField.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
             if(error){
-                //NSLog(@"error%@",error);
                 //如果失败 等待时间变为-1
                 self.waitTime = @-1;
-            }else{
+         	   }else{
                 NSLog(@"获取验证码成功");
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 block:^{
                     
@@ -217,16 +218,47 @@
     [loginButton setBackgroundColor:[UIColor colorWithRed:0.417 green:1.000 blue:0.416 alpha:1.000] forState:UIControlStateNormal];
     [loginButton setBackgroundColor:[UIColor grayColor] forState:UIControlStateDisabled];
     [loginButton setBackgroundColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    [loginButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+//    [loginButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+//        [SMSSDK commitVerificationCode:CAPTCHAText.text phoneNumber:phoneField.text zone:@"86" result:^(NSError *error) {
+//            if(error){
+//                [self createAlert:@"您输入的验证码错误，请重新输入!"];
+//            }else{
+//                [self dismissViewControllerAnimated:YES completion:^{
+//                    
+//                }];
+//            }
+//        }];
+//    }];
+    [[loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        //一般密码不可能会明文传输，最简单的也要进行 MD5加密 一旦进行 MD5 加密 会破坏字符串原来携带的信息 但是对于密码 服务器和app交互并不需要知道密码携带的信息 所以无论是登录还是注册 都必须加密
+        //对密码进行加盐后再进行加密 固定字符串的盐@“ABCDEF”
+        //随机字符串
+        
+        NSString *pass = [passwordField.text md532BitUpper];
         [SMSSDK commitVerificationCode:CAPTCHAText.text phoneNumber:phoneField.text zone:@"86" result:^(NSError *error) {
             if(error){
                 [self createAlert:@"您输入的验证码错误，请重新输入!"];
             }else{
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
+                NSDictionary *parameters = @{
+                                             @"service":@"User.Register",
+                                             @"phone":phoneField.text,
+                                             @"password":pass,
+                                             @"verificationCode":CAPTCHAText.text
+                                             };
+                [AFNetworkTool getDataWithPath:QFAppBaseURL andParameters:parameters completeBlock:^(BOOL success, id result) {
+                    if(success){
+                        NSLog(@"%@",result);
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            
+                        }];
+                    }else{
+                        [self createAlert:result];
+                    }
                 }];
+                
             }
         }];
+        
     }];
     //当我们不用antuLayout 的时候，如何去让视图自适应
     //autoResizing
@@ -264,7 +296,10 @@
     }];
     
 }
-#pragma mark -计时器
+//
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 
 
 - (void)createAlert:(NSString *)str{

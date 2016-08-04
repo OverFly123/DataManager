@@ -26,6 +26,7 @@ PODS:
   - ReactiveCocoa/RACExtensions (2.0):
     - ReactiveCocoa/Core
   - SMSSDK (2.0.5)
+  - YYModel (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - MOBFoundation_IDFA
   - ReactiveCocoa (= 2.0)
   - SMSSDK
+  - YYModel
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -40,7 +42,8 @@ SPEC CHECKSUMS:
   MOBFoundation_IDFA: 7952e1ec75970779010ab17afe81c84fea990d8a
   ReactiveCocoa: c5347d7b1c348d22a85800e14e89da84c5254cfb
   SMSSDK: 85375419fc969dc9398ce9922c5165c1e14ebe23
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: be318ee3b81af00d98a4737ce209d443b31abd2c
+PODFILE CHECKSUM: fcfb72c912be93d2ae0cd1fb47babea878c42713
 
 COCOAPODS: 1.0.1

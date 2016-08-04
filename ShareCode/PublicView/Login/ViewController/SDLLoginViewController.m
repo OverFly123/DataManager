@@ -12,9 +12,12 @@
 #import "UIImage+Color.h"
 #import "UIButton+BackgroundColor.h"
 #import "UIControl+ActionBlocks.h"
+#import "UIAlertView+Block.h"
+#import "NSString+MD5.h"
 
 #import "SDLForgetViewController.h"
 #import "SDLRegisterViewController.h"
+#import "SDLUserModel.h"
 
 @interface SDLLoginViewController ()
 
@@ -145,6 +148,41 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(gotoRegister)];
     
+    //
+    [phoneField handleControlEvents:UIControlEventEditingChanged withBlock:^(id weakSender) {
+        if(phoneField.text.length >=11){
+            if(phoneField.text.length >11){
+                phoneField.text = [phoneField.text substringToIndex:11];
+            }
+            [passwordField becomeFirstResponder];
+        }
+    }];
+    RAC(loginButton,enabled) = [RACSignal combineLatest:@[phoneField.rac_textSignal,passwordField.rac_textSignal] reduce:^(NSString *phone , NSString *pass){
+        return @(phone.length >= 11 && pass.length >=6);
+    }];
+    //登录
+    [loginButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+       
+        NSDictionary *parameters = @{
+                                     @"service":@"User.Login",
+                                     @"phone":phoneField.text,
+                                     @"password":[passwordField.text md532BitUpper]
+                                     };
+       [AFNetworkTool getDataWithPath:nil andParameters:parameters completeBlock:^(BOOL success, id result) {
+           if(success){
+               NSLog(@"%@",result);
+               SDLUserModel *user = [SDLUserModel shareUser];
+               //[user setValuesForKeysWithDictionary:result];
+               [user yy_modelSetWithDictionary:result];
+               [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+           }else{
+               [UIAlertView  alertWithCallBackBlock:nil title:@"温馨提示" message:result cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+           }
+       }];
+    }];
+    
+    
+    
 }
 #pragma mark -注册页面
 - (void)gotoRegister{
@@ -152,7 +190,9 @@
     [self.navigationController pushViewController:registerVC animated:YES];
 }
 
-
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 
 
 

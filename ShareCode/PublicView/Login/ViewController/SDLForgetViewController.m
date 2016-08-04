@@ -28,6 +28,7 @@
 #pragma mark - 创建UI
 - (void)crerateUI{
     UITextField *phoneText = [[UITextField alloc]init];
+    phoneText.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:phoneText];
     [phoneText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(@0);
@@ -51,6 +52,7 @@
     
     
     UITextField *passwordText = [[UITextField alloc]init];
+    passwordText.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:passwordText];
     passwordText.placeholder = @"请输入验证码";
     passwordText.font = [UIFont systemFontOfSize:15 weight:-0.15];

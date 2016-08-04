@@ -30,7 +30,8 @@ static NSString *baseUrl = @"https://www.1000phone.tk";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         //用BaseUrl生成sessionManager 就相当于告诉AFNetworking 以后我们请求数据 就是从这个服务器 那么就会把这个服务器的地址缓存起来
-        manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:baseUrl]];
+        //manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:QFAppBaseURL]];
+        manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:QFAppBaseURL]];
         //设置请求的超时时间 设置请求的参数的编码方式
         //请求的序列号
         manager.requestSerializer.timeoutInterval = 30.0;
