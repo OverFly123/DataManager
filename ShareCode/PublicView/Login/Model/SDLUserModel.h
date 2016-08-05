@@ -30,4 +30,11 @@
 + (SDLUserModel *)shareUser;
 
 
+//封装给外部两个方法
+//登录
++ (void)loginWithInfo:(NSDictionary *)userInfo;
+//登出
++ (void)loginOff;
+
+
 @end

@@ -24,4 +24,7 @@ OBJC_EXTERN NSString *const WNTESCerName;
 OBJC_EXTERN NSString *const MobApp;
 OBJC_EXTERN NSString *const MobSecret;
 
+//用户登录登出
+OBJC_EXTERN NSString *const WLogInSuccess;
+OBJC_EXTERN NSString *const WLogOffSuccess;
 #endif /* QFCodeShareInit_h */

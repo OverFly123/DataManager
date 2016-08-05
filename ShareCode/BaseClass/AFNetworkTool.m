@@ -87,4 +87,45 @@ static NSString *baseUrl = @"https://www.1000phone.tk";
 
 }
 
++ (void)uploadImageData:(NSData *)imageData andParameters:(NSDictionary *)parameters completeBlock:(void (^)(BOOL, id))complete{
+    //创建一个可变请求，并设置url
+//    NSMutableURLRequest *uploadRequest = [[AFHTTPRequestSerializer serializer]multipartFormRequestWithMethod:@"POST" URLString:@"" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        
+//    } error:nil];
+    //将data数据拼接到请求中
+    NSMutableURLRequest *uploadRequest = [[AFHTTPRequestSerializer serializer]multipartFormRequestWithMethod:@"POST" URLString:QFAppBaseURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        //在这里拼接数据
+        [formData appendPartWithFileData:imageData name:@"avatar" fileName:@"用户头像.jpg" mimeType:@"image/jpeg"];
+        
+        
+    } error:nil];
+    NSURLSessionUploadTask *task =  [[self sharedManager]uploadTaskWithStreamedRequest:uploadRequest progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        //完成的以后
+        if(error){
+            if(complete){
+                complete(NO, error.localizedDescription);
+            }
+        }else{
+            NSLog(@"%@",responseObject);
+        }
+    }];
+    [task resume];
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

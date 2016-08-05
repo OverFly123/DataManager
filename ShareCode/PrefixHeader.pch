@@ -17,4 +17,6 @@
 #import "AFNetworkTool.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <YYModel.h>
+#import "UIControl+ActionBlocks.h"
+#import "SDLUserModel.h"
 #endif /* PrefixHeader_pch */

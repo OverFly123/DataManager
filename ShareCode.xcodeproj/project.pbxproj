@@ -88,6 +88,10 @@
 		6836D7A21D50836C00194ED9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6836D7A01D50836C00194ED9 /* LaunchScreen.storyboard */; };
 		6836D7AD1D50836C00194ED9 /* ShareCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836D7AC1D50836C00194ED9 /* ShareCodeTests.m */; };
 		6836D7B81D50836D00194ED9 /* ShareCodeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836D7B71D50836D00194ED9 /* ShareCodeUITests.m */; };
+		683E220A1D54911A0028DAB0 /* SDLNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683E22091D54911A0028DAB0 /* SDLNickNameViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6892B6D51D54317300358EDF /* SDLMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892B6D41D54317300358EDF /* SDLMyViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6892B6DC1D546A6500358EDF /* SDLPersonSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892B6DB1D546A6500358EDF /* SDLPersonSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6892B6DF1D5473ED00358EDF /* SDLUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892B6DE1D5473EC00358EDF /* SDLUserInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		689953461D51E9F9000D2549 /* QFCodeShareInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 689953441D51E9F9000D2549 /* QFCodeShareInit.m */; settings = {ASSET_TAGS = (); }; };
 		6899534D1D51F083000D2549 /* TAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6899534A1D51F083000D2549 /* TAlertView.m */; settings = {ASSET_TAGS = (); }; };
 		6899534E1D51F083000D2549 /* UIScrollView+_DScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6899534C1D51F083000D2549 /* UIScrollView+_DScrollView.m */; settings = {ASSET_TAGS = (); }; };
@@ -279,6 +283,14 @@
 		6836D7B31D50836C00194ED9 /* ShareCodeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShareCodeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6836D7B71D50836D00194ED9 /* ShareCodeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareCodeUITests.m; sourceTree = "<group>"; };
 		6836D7B91D50836D00194ED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		683E22081D54911A0028DAB0 /* SDLNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLNickNameViewController.h; sourceTree = "<group>"; };
+		683E22091D54911A0028DAB0 /* SDLNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLNickNameViewController.m; sourceTree = "<group>"; };
+		6892B6D31D54317300358EDF /* SDLMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLMyViewController.h; sourceTree = "<group>"; };
+		6892B6D41D54317300358EDF /* SDLMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLMyViewController.m; sourceTree = "<group>"; };
+		6892B6DA1D546A6500358EDF /* SDLPersonSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLPersonSettingViewController.h; sourceTree = "<group>"; };
+		6892B6DB1D546A6500358EDF /* SDLPersonSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLPersonSettingViewController.m; sourceTree = "<group>"; };
+		6892B6DD1D5473EC00358EDF /* SDLUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLUserInfoViewController.h; sourceTree = "<group>"; };
+		6892B6DE1D5473EC00358EDF /* SDLUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLUserInfoViewController.m; sourceTree = "<group>"; };
 		689953421D51E9F9000D2549 /* LxDBAnything.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxDBAnything.h; sourceTree = "<group>"; };
 		689953431D51E9F9000D2549 /* QFCodeShareInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFCodeShareInit.h; sourceTree = "<group>"; };
 		689953441D51E9F9000D2549 /* QFCodeShareInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFCodeShareInit.m; sourceTree = "<group>"; };
@@ -324,6 +336,7 @@
 		682A423D1D51860400CE2723 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6892B6CF1D541F5500358EDF /* MY(我的) */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -666,9 +679,9 @@
 			isa = PBXGroup;
 			children = (
 				682A42511D519DA800CE2723 /* Addition */,
-				682A423D1D51860400CE2723 /* ViewController */,
 				6836D7C51D5085BB00194ED9 /* BaseClass */,
 				6836D7C61D5085BB00194ED9 /* PublicView */,
+				682A423D1D51860400CE2723 /* ViewController */,
 				6836D7951D50836C00194ED9 /* AppDelegate.h */,
 				6836D7961D50836C00194ED9 /* AppDelegate.m */,
 				6836D7981D50836C00194ED9 /* ViewController.h */,
@@ -727,9 +740,80 @@
 		6836D7C61D5085BB00194ED9 /* PublicView */ = {
 			isa = PBXGroup;
 			children = (
+				6892B6D61D5469EB00358EDF /* PersonSetting */,
 				682A42441D5187B000CE2723 /* Login */,
 			);
 			path = PublicView;
+			sourceTree = "<group>";
+		};
+		6892B6CF1D541F5500358EDF /* MY(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				6892B6D01D541F7200358EDF /* models */,
+				6892B6D11D541F7200358EDF /* cells */,
+				6892B6D21D541F7200358EDF /* View */,
+			);
+			path = "MY(我的)";
+			sourceTree = "<group>";
+		};
+		6892B6D01D541F7200358EDF /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		6892B6D11D541F7200358EDF /* cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		6892B6D21D541F7200358EDF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6892B6D31D54317300358EDF /* SDLMyViewController.h */,
+				6892B6D41D54317300358EDF /* SDLMyViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6892B6D61D5469EB00358EDF /* PersonSetting */ = {
+			isa = PBXGroup;
+			children = (
+				6892B6D91D5469EB00358EDF /* view */,
+				6892B6D71D5469EB00358EDF /* cell */,
+				6892B6D81D5469EB00358EDF /* model */,
+			);
+			path = PersonSetting;
+			sourceTree = "<group>";
+		};
+		6892B6D71D5469EB00358EDF /* cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		6892B6D81D5469EB00358EDF /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		6892B6D91D5469EB00358EDF /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6892B6DA1D546A6500358EDF /* SDLPersonSettingViewController.h */,
+				6892B6DB1D546A6500358EDF /* SDLPersonSettingViewController.m */,
+				6892B6DD1D5473EC00358EDF /* SDLUserInfoViewController.h */,
+				6892B6DE1D5473EC00358EDF /* SDLUserInfoViewController.m */,
+				683E22081D54911A0028DAB0 /* SDLNickNameViewController.h */,
+				683E22091D54911A0028DAB0 /* SDLNickNameViewController.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		689953411D51E9F9000D2549 /* CommonSetting */ = {
@@ -1061,10 +1145,13 @@
 				682A43141D519DA900CE2723 /* UIImageView+Letters.m in Sources */,
 				682A42FD1D519DA900CE2723 /* NSString+UrlEncode.m in Sources */,
 				682A43281D519DA900CE2723 /* UIViewController+BackButtonHandler.m in Sources */,
+				6892B6DC1D546A6500358EDF /* SDLPersonSettingViewController.m in Sources */,
 				682A430D1D519DA900CE2723 /* UIImage+FX.m in Sources */,
+				6892B6D51D54317300358EDF /* SDLMyViewController.m in Sources */,
 				682A430E1D519DA900CE2723 /* UIImage+Resize.m in Sources */,
 				682A43321D51C3C700CE2723 /* SDLRegisterViewController.m in Sources */,
 				682A42EC1D519DA900CE2723 /* NSDate+Reporting.m in Sources */,
+				6892B6DF1D5473ED00358EDF /* SDLUserInfoViewController.m in Sources */,
 				682A42F41D519DA900CE2723 /* NSObject+GCD.m in Sources */,
 				682A43021D519DA900CE2723 /* UIApplication+Permissions.m in Sources */,
 				682A42EE1D519DA900CE2723 /* NSDictionary+JSONString.m in Sources */,
@@ -1118,6 +1205,7 @@
 				682A42EA1D519DA900CE2723 /* NSDate+Formatter.m in Sources */,
 				682A43231D519DA900CE2723 /* UIView+Screenshot.m in Sources */,
 				682A43181D519DA900CE2723 /* UINavigationController+JZExtension.m in Sources */,
+				683E220A1D54911A0028DAB0 /* SDLNickNameViewController.m in Sources */,
 				682A43291D519DA900CE2723 /* UIViewController+BackButtonItemTitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,8 @@
 #import "SDLPublicViewController.h"
 #import "SDLUserModel.h"
 #import "SDLLoginViewController.h"
+#import "SDLMyViewController.h"
+
 
 @interface SDLPublicViewController ()
 
@@ -23,16 +25,23 @@
     [self setUpViewController];
     
     //当用户没有登陆的时候 需要弹出登录界面
-    
+    //设置界面显示样式
+    [self setUpAppearance];
+}
+#pragma mark -设置界面显示样式
+- (void)setUpAppearance{
+    UITabBar *appearance = [UITabBar appearance];
+    //背景颜色
+    //[appearance setBarTintColor:[UIColor greenColor]];
+    //前景颜色(视图上条目的颜色)
+    [appearance setTintColor:[UIColor colorWithRed:0.464 green:0.271 blue:0.781 alpha:1.000]];
+    [[UITextField appearance] setTintColor:[UIColor colorWithRed:1.000 green:0.296 blue:0.915 alpha:1.000]];
 }
 #pragma mark -判断用户是否登录
 - (void)viewDidAppear:(BOOL)animated{
     //要在生命周期方法中调用父类的方法
     [super viewDidAppear:animated];
     //当用户没有登录的时候 需要弹出登录界面
-    
-    
-    
     if([SDLUserModel isLogin]){
         
     }else{
@@ -61,22 +70,22 @@
                                    @{
                                        @"class":[UIViewController class],
                                        @"title": @"首页",
-                                       @"icon": @"tabbar1",
+                                       @"icon": @"按钮主页",
                                        },
                                    @{
                                        @"class":[UIViewController class],
-                                       @"title": @"首页2",
-                                       @"icon": @"tabbar2",
+                                       @"title": @"消息",
+                                       @"icon": @"按钮消息",
                                        },
                                    @{
                                        @"class":[UIViewController class],
-                                       @"title": @"首页3",
-                                       @"icon": @"tabbar3",
+                                       @"title": @"分享",
+                                       @"icon": @"按钮分享",
                                        },
                                    @{
-                                       @"class":[UIViewController class],
-                                       @"title": @"首页4",
-                                       @"icon": @"tabbar4",
+                                       @"class":[SDLMyViewController class],
+                                       @"title": @"我的",
+                                       @"icon": @"按钮我的",
                                        },
                                  ];
     NSMutableArray *controllerArrM = [NSMutableArray arrayWithCapacity:controllerInfoArr.count];
@@ -85,6 +94,8 @@
         //这里直接拿遍历 block传过来的字典 取出其中的控制器类型 然后创建一个控制器
         UIViewController *controller = [[[obj objectForKey:@"class"]alloc]init];
         controller.title = [obj objectForKey:@"title"];
+        controller.tabBarItem = [[UITabBarItem alloc]initWithTitle:[obj objectForKey:@"title"] image:[UIImage imageNamed:[obj objectForKey:@"icon"]] tag:0];
+        
         //再创建一个导航控制器 装入刚才创建的控制器
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:controller];
         //需要将导航控制器装入到数组中

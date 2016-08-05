@@ -171,9 +171,11 @@
        [AFNetworkTool getDataWithPath:nil andParameters:parameters completeBlock:^(BOOL success, id result) {
            if(success){
                NSLog(@"%@",result);
-               SDLUserModel *user = [SDLUserModel shareUser];
-               //[user setValuesForKeysWithDictionary:result];
-               [user yy_modelSetWithDictionary:result];
+               //SDLUserModel *user = [SDLUserModel shareUser];
+               //[user yy_modelSetWithDictionary:result];
+               [SDLUserModel loginWithInfo:result];
+               
+               
                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
            }else{
                [UIAlertView  alertWithCallBackBlock:nil title:@"温馨提示" message:result cancelButtonName:@"确定" otherButtonTitles:nil, nil];
