@@ -30,4 +30,8 @@ pod 'SMSSDK'
 
 pod 'YYModel'
 
+pod 'YYWebImage'
+
+
+
 end

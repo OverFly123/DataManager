@@ -19,4 +19,6 @@
 #import <YYModel.h>
 #import "UIControl+ActionBlocks.h"
 #import "SDLUserModel.h"
+#import <YYWebImage.h>
+#import "TAlertView.h"
 #endif /* PrefixHeader_pch */

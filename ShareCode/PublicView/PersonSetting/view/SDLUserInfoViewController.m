@@ -9,11 +9,11 @@
 #import "SDLUserInfoViewController.h"
 #import "UIButton+BackgroundColor.h"
 #import "SDLNickNameViewController.h"
-
+#import "SDLImageViewController.h"
 
 static NSString *settingCellID = @"settingCellID";
 
-@interface SDLUserInfoViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface SDLUserInfoViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIViewControllerPreviewingDelegate>
 
 @property(nonatomic,strong)NSArray *dataArr;
 @property(nonatomic,strong)UIImageView *headImage;
@@ -30,6 +30,28 @@ static NSString *settingCellID = @"settingCellID";
     self.view.backgroundColor = WArcColor;
     [self initData];
     [self createTableView];
+    
+    //封装3D Touch
+    [self setUp3DTouch];
+    
+}
+#pragma mark -封装3Dtouch
+- (void)setUp3DTouch{
+    //在使用3DTouch的api之前  需要首先判断是否支持3DTouch
+    if([[UIDevice currentDevice].systemVersion integerValue] >= 9.0){
+        [self registerForPreviewingWithDelegate:self sourceView:self.headImage];
+    }
+}
+#pragma mark -UIViewControllerPreviewingDelegate
+- (nullable UIViewController *)previewingContext:(id  <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    //peek预览功能 可以庆按显示一个预览控制器
+    SDLImageViewController *imageVC = [[SDLImageViewController alloc]init];
+    return imageVC;
+}
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit{
+    //pop 重按会调用这个方法 我们在这里可以做任意操作 一般情况下是跳转到预览的控制器
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
+    
     
 }
 #pragma mark - 初始化数据源
@@ -97,9 +119,20 @@ static NSString *settingCellID = @"settingCellID";
     }];
     [loginOffButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
         [SDLUserModel loginOff];
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        
+        
+        //[self.navigationController popViewControllerAnimated:YES];
     }];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:settingCellID];
+    
+    
+    
+    [self.headImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.30.152.134/PhalApi/Public/%@",[SDLUserModel shareUser].avatar]] placeholder:[UIImage imageNamed:@"用户头像"]];
+    
+    
+    
+    
 }
 #pragma mark -UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -189,7 +222,7 @@ static NSString *settingCellID = @"settingCellID";
                                  };
     [AFNetworkTool uploadImageData:imageData andParameters:parameters completeBlock:^(BOOL success, id result) {
         if(success){
-            NSLog(@"%@",result);
+            [SDLUserModel loginWithInfo:result];
         }else{
             NSLog(@"%@",result);
         }

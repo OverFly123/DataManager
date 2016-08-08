@@ -14,7 +14,7 @@
 @property(nonatomic,copy)NSString *avatar;
 @property(nonatomic,copy)NSString *gender;
 @property(nonatomic,copy)NSString *ID;
-@property(nonatomic,copy)NSString *nikename;
+@property(nonatomic,copy)NSString *nickname;
 @property(nonatomic,copy)NSString *address;
 @property(nonatomic,copy)NSString *birthday;
 @property(nonatomic,copy)NSString *email;

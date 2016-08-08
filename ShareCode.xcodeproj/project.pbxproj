@@ -89,6 +89,9 @@
 		6836D7AD1D50836C00194ED9 /* ShareCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836D7AC1D50836C00194ED9 /* ShareCodeTests.m */; };
 		6836D7B81D50836D00194ED9 /* ShareCodeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836D7B71D50836D00194ED9 /* ShareCodeUITests.m */; };
 		683E220A1D54911A0028DAB0 /* SDLNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683E22091D54911A0028DAB0 /* SDLNickNameViewController.m */; settings = {ASSET_TAGS = (); }; };
+		688F98DF1D5826FD00223E83 /* SDLAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F98DE1D5826FD00223E83 /* SDLAboutViewController.m */; settings = {ASSET_TAGS = (); }; };
+		688F98E61D586D7B00223E83 /* SDLSuggertionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F98E41D586D7B00223E83 /* SDLSuggertionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		688F98EA1D5881AA00223E83 /* SDLImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F98E91D5881AA00223E83 /* SDLImageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6892B6D51D54317300358EDF /* SDLMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892B6D41D54317300358EDF /* SDLMyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6892B6DC1D546A6500358EDF /* SDLPersonSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892B6DB1D546A6500358EDF /* SDLPersonSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6892B6DF1D5473ED00358EDF /* SDLUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892B6DE1D5473EC00358EDF /* SDLUserInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -285,6 +288,12 @@
 		6836D7B91D50836D00194ED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		683E22081D54911A0028DAB0 /* SDLNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLNickNameViewController.h; sourceTree = "<group>"; };
 		683E22091D54911A0028DAB0 /* SDLNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLNickNameViewController.m; sourceTree = "<group>"; };
+		688F98DD1D5826FD00223E83 /* SDLAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLAboutViewController.h; sourceTree = "<group>"; };
+		688F98DE1D5826FD00223E83 /* SDLAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLAboutViewController.m; sourceTree = "<group>"; };
+		688F98E31D586D7B00223E83 /* SDLSuggertionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLSuggertionViewController.h; sourceTree = "<group>"; };
+		688F98E41D586D7B00223E83 /* SDLSuggertionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLSuggertionViewController.m; sourceTree = "<group>"; };
+		688F98E81D5881AA00223E83 /* SDLImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLImageViewController.h; sourceTree = "<group>"; };
+		688F98E91D5881AA00223E83 /* SDLImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLImageViewController.m; sourceTree = "<group>"; };
 		6892B6D31D54317300358EDF /* SDLMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLMyViewController.h; sourceTree = "<group>"; };
 		6892B6D41D54317300358EDF /* SDLMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLMyViewController.m; sourceTree = "<group>"; };
 		6892B6DA1D546A6500358EDF /* SDLPersonSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLPersonSettingViewController.h; sourceTree = "<group>"; };
@@ -812,6 +821,12 @@
 				6892B6DE1D5473EC00358EDF /* SDLUserInfoViewController.m */,
 				683E22081D54911A0028DAB0 /* SDLNickNameViewController.h */,
 				683E22091D54911A0028DAB0 /* SDLNickNameViewController.m */,
+				688F98DD1D5826FD00223E83 /* SDLAboutViewController.h */,
+				688F98DE1D5826FD00223E83 /* SDLAboutViewController.m */,
+				688F98E31D586D7B00223E83 /* SDLSuggertionViewController.h */,
+				688F98E41D586D7B00223E83 /* SDLSuggertionViewController.m */,
+				688F98E81D5881AA00223E83 /* SDLImageViewController.h */,
+				688F98E91D5881AA00223E83 /* SDLImageViewController.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1130,6 +1145,7 @@
 				682A43001D519DA900CE2723 /* UIAlertView+Block.m in Sources */,
 				682A432F1D51C15C00CE2723 /* SDLForgetViewController.m in Sources */,
 				682A42EF1D519DA900CE2723 /* NSDictionary+Merge.m in Sources */,
+				688F98E61D586D7B00223E83 /* SDLSuggertionViewController.m in Sources */,
 				682A43081D519DA900CE2723 /* UIImage+Blur.m in Sources */,
 				682A42F11D519DA900CE2723 /* NSDictionary+URL.m in Sources */,
 				6836D79A1D50836C00194ED9 /* ViewController.m in Sources */,
@@ -1197,9 +1213,11 @@
 				682A42F91D519DA900CE2723 /* NSString+MD5.m in Sources */,
 				682A42FA1D519DA900CE2723 /* NSString+RegexCategory.m in Sources */,
 				682A42F61D519DA900CE2723 /* NSObject+Property.m in Sources */,
+				688F98EA1D5881AA00223E83 /* SDLImageViewController.m in Sources */,
 				682A431A1D519DA900CE2723 /* UINavigationItem+Lock.m in Sources */,
 				682A42F31D519DA900CE2723 /* NSObject+AutoCoding.m in Sources */,
 				682A43271D519DA900CE2723 /* UIView+Visuals.m in Sources */,
+				688F98DF1D5826FD00223E83 /* SDLAboutViewController.m in Sources */,
 				682A42501D5188B000CE2723 /* SDLLoginViewController.m in Sources */,
 				682A424D1D51881500CE2723 /* SDLData.m in Sources */,
 				682A42EA1D519DA900CE2723 /* NSDate+Formatter.m in Sources */,
@@ -1350,6 +1368,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ShareCode/PrefixHeader.pch";
 				INFOPLIST_FILE = ShareCode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ShareCode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1363,6 +1382,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ShareCode/PrefixHeader.pch";
 				INFOPLIST_FILE = ShareCode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ShareCode;
 				PRODUCT_NAME = "$(TARGET_NAME)";

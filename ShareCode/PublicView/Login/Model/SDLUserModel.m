@@ -14,6 +14,14 @@ static NSString *userInfoKey = @"UserInfoKey";
 static NSString *userStatus = @"UserStatus";
 
 @implementation SDLUserModel
++ (SDLUserModel *)shareUser{
+    static SDLUserModel *user = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        user = [[SDLUserModel alloc]init];
+    });
+    return user;
+}
 + (BOOL)isLogin{
     //如果这个单例ID存在 就是登陆
     return [[NSUserDefaults standardUserDefaults] boolForKey:userStatus];
@@ -31,14 +39,7 @@ static NSString *userStatus = @"UserStatus";
              @"ID":@"id"
              };
 }
-+ (SDLUserModel *)shareUser{
-    static SDLUserModel *user = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        user = [[SDLUserModel alloc]init];
-    });
-    return user;
-}
+
 //把用户的登录状态保存起来  还需要保存登陆的信息，id，token, 如果对于数量较小的信息 可以直接存储到NSUserDefault
 //关于用户登录或者退出登录这样的时间 都会用通知来管理  一般都是一对多的关系
 + (void)loginWithInfo:(NSDictionary *)userInfo{
@@ -49,6 +50,7 @@ static NSString *userStatus = @"UserStatus";
     //将用户的登录状态和信息存到本地
     [self saveUserInfo:userInfo];
 }
+
 + (void)saveUserInfo:(NSDictionary *)userInfo{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     //用 setObject:forkey: 存储用户信息

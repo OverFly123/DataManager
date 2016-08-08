@@ -29,7 +29,7 @@
     nickName.backgroundColor = [UIColor whiteColor];
     nickName.placeholder = @"不得超过15个字母或字符";
     nickName.returnKeyType = UIReturnKeyDone;
-    [nickName handleControlEvents:UIControlEventEditingDidEnd withBlock:^(id weakSender) {
+    [nickName handleControlEvents:UIControlEventEditingDidEndOnExit withBlock:^(id weakSender) {
         
         //在这里将姓名修改  调用修改用户信息的接口
         NSDictionary *parameters = @{
@@ -39,7 +39,10 @@
                                      };
         [AFNetworkTool getDataWithPath:QFAppBaseURL andParameters:parameters completeBlock:^(BOOL success, id result) {
             if(success){
+                NSLog(@"%@",result);
+                [SDLUserModel loginWithInfo:result];
                 [self.navigationController popViewControllerAnimated:YES];
+                
             }else{
                 NSLog(@"上传失败");
             }

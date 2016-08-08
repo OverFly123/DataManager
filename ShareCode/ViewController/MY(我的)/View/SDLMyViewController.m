@@ -19,6 +19,10 @@
 //内容视图 加载scrollView上面 所有其他视图都加在这个视图上面
 @property(nonatomic,weak)UIView *contentView;
 
+@property(nonatomic,weak)UIImageView *headImageView;
+@property(nonatomic,weak)UILabel *nickNameLable;
+@property(nonatomic,weak)UILabel *emailLable;
+
 @end
 
 @implementation SDLMyViewController
@@ -100,7 +104,9 @@
         make.left.equalTo(headImageView.mas_right).offset(10);
         make.top.equalTo(@16);
         make.width.equalTo(@200);
+        make.height.equalTo(@30);
     }];
+    
     //用户邮箱
     UILabel *emailLable = [[UILabel alloc]init];
     [backImageView addSubview:emailLable];
@@ -109,7 +115,10 @@
         make.left.equalTo(nickNameLable);
         make.top.equalTo(nickNameLable.mas_bottom).offset(4);
         make.width.equalTo(@200);
+        make.height.equalTo(@30);
     }];
+
+    
     
     //设置按钮
     UIButton *settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -132,8 +141,32 @@
         
         
     }];
+    
+    self.headImageView = headImageView;
+    self.nickNameLable = nickNameLable;
+    self.emailLable = emailLable;
+    
 }
 
+#pragma mark -界面将要显示时  更新数据
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //1.用户刚登陆成功 然后进入这个界面
+    //2.用户在设置界面做完修改，回到这个界面
+    //3.用户退出登陆 又登陆另一个账户
+    
+    
+    NSLog(@"%@",[SDLUserModel shareUser]);
+    [self.headImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.30.152.134/PhalApi/Public/%@",[SDLUserModel shareUser].avatar]] placeholder:[UIImage imageNamed:@"用户头像"]];
+    self.nickNameLable.text = [SDLUserModel shareUser].nickname;
+    NSLog(@"%@",self.nickNameLable.text);
+    self.emailLable.text = [SDLUserModel shareUser].email;
+    
+    
+    
+    
+}
 
 
 

@@ -8,7 +8,8 @@
 
 #import "SDLPersonSettingViewController.h"
 #import "SDLUserInfoViewController.h"
-
+#import "SDLAboutViewController.h"
+#import "SDLSuggertionViewController.h"
 
 #define SETTINGCELLID  @"settingCellID"
 
@@ -35,6 +36,7 @@ static NSString *settingCellID = @"settingCellID";
 
 #pragma mark -初始化数据
 - (void)initData{
+    		
     //用MVC的方式去屑tableview 让tableview根据我们提前设置好的数据去展示就OK
     
     self.dataArr = @[
@@ -81,12 +83,12 @@ static NSString *settingCellID = @"settingCellID";
                              @"cellType":@""
                              },
                          @{
-                             @"title":@"关于我们",
+                             @"title":@"用户反馈",
                              @"subTitle":@"哈哈,真傻",
                              @"cellType":@"arrow"
                              },
                          @{
-                             @"title":@"用户反馈",
+                             @"title":@"关于我们",
                              @"subTitle":@"哈哈,真傻",
                              @"cellType":@"arrow"
                              },
@@ -153,6 +155,12 @@ static NSString *settingCellID = @"settingCellID";
     if(indexPath.section == 0){
         SDLUserInfoViewController *userInfoVC = [[SDLUserInfoViewController alloc]init];
         [self.navigationController pushViewController:userInfoVC animated:YES];
+    }else if (indexPath.section == 3 && indexPath.row == 2){
+        SDLAboutViewController *aboutVC = [[SDLAboutViewController alloc]init];
+        [self.navigationController pushViewController:aboutVC animated:YES];
+    }else if (indexPath.section == 3 && indexPath.row == 1){
+        SDLSuggertionViewController *suggertVC = [[SDLSuggertionViewController alloc]init];
+        [self.navigationController pushViewController:suggertVC animated:YES];
     }
     
 }
