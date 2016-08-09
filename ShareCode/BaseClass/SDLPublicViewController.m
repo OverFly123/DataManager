@@ -31,7 +31,7 @@
     //在这里监听通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logOff) name:WLogOffSuccess object:nil];
     
-    
+    //[self.view setBackgroundColor:CGImageGetColorSpace((CGImageRef)[UIImage imageNamed:@"icon"])];
 }
 #pragma mark -监听的实现方法
 - (void)logOff{
@@ -74,6 +74,7 @@
     [self presentViewController:nav animated:YES completion:^{
         
     }];
+   
 }
 
 #pragma mark -使用MVC创建控制器 用数据控制现实的界面

@@ -10,6 +10,8 @@
 #import "SDLUserInfoViewController.h"
 #import "SDLAboutViewController.h"
 #import "SDLSuggertionViewController.h"
+#import "SDLCircleViewController.h"
+#import "SDLTriangleViewController.h"
 
 #define SETTINGCELLID  @"settingCellID"
 
@@ -159,7 +161,7 @@ static NSString *settingCellID = @"settingCellID";
         SDLAboutViewController *aboutVC = [[SDLAboutViewController alloc]init];
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else if (indexPath.section == 3 && indexPath.row == 1){
-        SDLSuggertionViewController *suggertVC = [[SDLSuggertionViewController alloc]init];
+        SDLTriangleViewController *suggertVC = [[SDLTriangleViewController alloc]init];
         [self.navigationController pushViewController:suggertVC animated:YES];
     }
     
